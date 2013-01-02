@@ -1,0 +1,6 @@
+A Rails app that routes commit notifications based on committer, repo, branch, etc.
+
+Environment vars that must be set:
+
+SMTP_USERNAME
+SMTP_PASSWORD
