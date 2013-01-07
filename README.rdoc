@@ -4,3 +4,6 @@ Environment vars that must be set:
 
 SMTP_USERNAME
 SMTP_PASSWORD
+
+AWS_ACCESS_KEY_ID
+AWS_SECRET_ACCESS_KEY

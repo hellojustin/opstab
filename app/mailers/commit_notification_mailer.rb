@@ -1,9 +1,11 @@
 class CommitNotificationMailer < ActionMailer::Base
 
   def commit_notification( commit )
+
+    @commit = commit
     
-    mail( :to      => 'justin.molineaux@gmail.com',
-          :from    => 'justin.molineaux@gmail.com',
+    mail( :to      => 'notifications@hellojustin.net',
+          :from    => 'notify@hellojustin.net',
           :subject => 'Commit Notification!' )
 
 
