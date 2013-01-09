@@ -6,21 +6,16 @@
   </head>
 
   <body>
-    <h2>
-      <%= @commit.repository %> Commit Notification:
-    </h2>
+    <h3>
+      <%= @commit.comment %>
+    </h3>
     
     <div id='commit-details'>
-      <p>Branch: <%= @commit.branch %></p>
       <p>Committer: <%= @commit.committer %></p>
       <p>Time: <%= @commit.date %></p>
       <p>Revision: <%= @commit.revision %></p>
     </div>
-  
-    <div id='commit-comment'>
-      <p><%= @commit.comment %></p>
-    </div>
-
+    
     <pre id='commit-diff'>
       <%= @commit.diff %>
     </pre>

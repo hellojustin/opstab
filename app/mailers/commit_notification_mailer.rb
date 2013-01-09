@@ -4,10 +4,14 @@ class CommitNotificationMailer < ActionMailer::Base
 
     @commit = commit
     
-    mail( :to      => 'notifications@hellojustin.net',
-          :from    => 'notify@hellojustin.net',
-          :subject => 'Commit Notification!' )
+    recipients = [ 'jmolineaux@customink.com', 
+                   'acardy@customink.com', 
+                   'rfields@customink.com', 
+                   'jborn@customink.com' ]
 
+    mail( :to      => recipients,
+          :from    => 'notify@hellojustin.net',
+          :subject => "Commit #{commit.comment}" )
 
   end
 
