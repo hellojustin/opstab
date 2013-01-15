@@ -24,6 +24,7 @@ CommitNotifier::Application.configure do
     :enable_starttls_auto => true
   }
   config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.default_url_options = { :host => 'commit_notifier.dev' }
 
   # Print deprecation notices to the Rails logger
   config.active_support.deprecation = :log
