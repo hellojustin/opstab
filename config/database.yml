@@ -1,5 +1,5 @@
 development:
-  adapter: postgresql
-  host: localhost
+  adapter:  postgresql
+  host:     localhost
   username: jmolineaux
   database: notifications_dev

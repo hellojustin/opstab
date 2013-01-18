@@ -6,4 +6,8 @@ CommitNotifier::Application.routes.draw do
 
   resources :commits
 
+  resources :notifications, :only => [ :index, :show, :update, :destroy ]
+
+  resources :notification_rules
+
 end

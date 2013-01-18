@@ -1,0 +1,13 @@
+<ul id='notificationRuleList'>
+
+  <% notification_rules.each do |rule| %>
+    <li>
+      <span><%= rule.action          %></span>
+      <span><%= rule.repository_expr %></span>
+      <span><%= rule.branch_expr     %></span>
+      <span><%= rule.committer_expr  %></span>
+      <span><%= rule.comment_expr    %></span>
+    </li>
+  <% end %>
+
+</ul>

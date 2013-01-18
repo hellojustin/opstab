@@ -1,3 +1,5 @@
+require 'notifications/processor'
+
 class CommitsController < ApplicationController
 
   skip_before_filter :verify_authenticity_token
@@ -5,9 +7,12 @@ class CommitsController < ApplicationController
   respond_to :json
 
   def create
-    commit = Commit.new( params[:commit] )
-    CommitNotificationMailer.commit_notification( commit ).deliver
-    
+    commit = Commit.new params[:commit]
+    commit.save
+
+    notification_processor = Notifications::Processor.new
+    notification_processor.process commit
+
     respond_with( commit ) and return
   end
 

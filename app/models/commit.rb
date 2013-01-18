@@ -1,15 +1,4 @@
-class Commit
-
-  extend  ActiveModel::Naming
-  include ActiveModel::Serialization
-
-  attr_accessor :branch,
-                :comment,
-                :committer,
-                :date,
-                :diff,
-                :repository,
-                :revision
+class Commit < ActiveRecord::Base
 
   def initialize( attributes )
 
