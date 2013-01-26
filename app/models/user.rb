@@ -36,6 +36,11 @@ class User < ActiveRecord::Base
     where 'email LIKE ?', "%#{terms}%" 
   end
 
+  def initialize( params )
+    super
+    self.api_key = SecureRandom.uuid
+  end
+
   def follows?( user )
     followed_users.include? user
   end

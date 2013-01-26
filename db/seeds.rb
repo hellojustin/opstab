@@ -5,3 +5,8 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+Integration.create( [ 
+  { :name => 'Git: Client-Side', 
+    :description => 'The Git Client-Side integration lets you inform your followers when you make local git changes.',
+    :instructions => '' } ] )

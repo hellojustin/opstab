@@ -1,0 +1,14 @@
+<h2>Integrations</h2>
+
+<ul id="integrationsList">
+
+  <% integrations.each do |integration| %>
+
+    <li>
+      <span><%= link_to integration.name, integration_path( integration ) %></span>
+      <p><%= integration.description %></p>
+    </li>
+
+  <% end %>
+
+</ul>

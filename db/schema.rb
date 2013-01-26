@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130126061208) do
+ActiveRecord::Schema.define(:version => 20130126080308) do
 
   create_table "commits", :force => true do |t|
     t.string   "branch"
@@ -52,6 +52,7 @@ ActiveRecord::Schema.define(:version => 20130126061208) do
   create_table "integrations", :force => true do |t|
     t.string "name"
     t.string "description"
+    t.text   "instructions"
   end
 
   create_table "notification_rules", :force => true do |t|
@@ -85,6 +86,7 @@ ActiveRecord::Schema.define(:version => 20130126061208) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
+    t.string   "api_key"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
