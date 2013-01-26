@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130122030231) do
+ActiveRecord::Schema.define(:version => 20130126061208) do
 
   create_table "commits", :force => true do |t|
     t.string   "branch"
@@ -39,6 +39,20 @@ ActiveRecord::Schema.define(:version => 20130122030231) do
 
   add_index "followings", ["followed_user_id"], :name => "index_followings_on_followed_user_id"
   add_index "followings", ["following_user_id"], :name => "index_followings_on_following_user_id"
+
+  create_table "integration_usages", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "integration_id"
+    t.datetime "last_used"
+  end
+
+  add_index "integration_usages", ["integration_id"], :name => "index_integration_usages_on_integration_id"
+  add_index "integration_usages", ["user_id"], :name => "index_integration_usages_on_user_id"
+
+  create_table "integrations", :force => true do |t|
+    t.string "name"
+    t.string "description"
+  end
 
   create_table "notification_rules", :force => true do |t|
     t.integer "user_id"

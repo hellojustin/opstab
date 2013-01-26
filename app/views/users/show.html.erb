@@ -1,4 +1,4 @@
-<aside>
+<div>
 
   <header>
     <h2><%= user.email %></h2>
@@ -31,16 +31,22 @@
       <li><a href="#">more...</a></li>
     </ul>
   </div>
-  
-</aside>
 
-<article>
+  <div id="integrationsUsed">
+    <h3>Integrations in use</h3>
+    <ul>
+      
+      <% integrations_in_use.each do |integration| %>
+        <li>
+          <%= link_to integration.name, integration_path( integration ) %>
+        </li>
+      <% end %>
 
-  <header>
-    <h2>Notifications</h2>
-  </header>
+    </ul>
+  </div>
 
   <div id="notificationsList">
+    <h3>Notifications</h3>
     <ul>
       <% notifications.each do |notification| %>
 
@@ -55,4 +61,5 @@
     </ul>
   </div>
 
-</article>
+</div>
+

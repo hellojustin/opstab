@@ -4,7 +4,7 @@ CommitNotifier::Application.routes.draw do
 
   root :to => "home#index"
 
-  resources :users, :only => [ :index ]
+  resources :users, :only => [ :index, :show ]
 
   match 'users/:search_terms', 
         :to => 'users#index', 
@@ -21,6 +21,8 @@ CommitNotifier::Application.routes.draw do
 
   resources :notifications, :only => [ :index, :show ]
 
-  resources :notification_rules
+  resources :integrations, :only => [ :index, :show ]
+  
+  resources :integration_downloads, :only => [ :show ]
 
 end

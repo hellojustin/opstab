@@ -26,6 +26,12 @@ class User < ActiveRecord::Base
            :through     => :follows,
            :source      => :followed_user
 
+  has_many :notifications
+
+  has_many :integration_usages
+
+  has_many :integrations, :through => :integration_usages
+
   def self.search( terms )
     where 'email LIKE ?', "%#{terms}%" 
   end
