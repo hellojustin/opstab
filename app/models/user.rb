@@ -7,4 +7,31 @@ class User < ActiveRecord::Base
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me
+
+  has_many :followings,
+           :class_name  => 'Following',
+           :foreign_key => 'followed_user_id'
+
+  has_many :follows,
+           :class_name  => 'Following',
+           :foreign_key => 'following_user_id'
+
+  has_many :followers,      
+           :class_name  => 'User',
+           :through     => :followings,
+           :source      => :following_user
+
+  has_many :followed_users, 
+           :class_name  => 'User', 
+           :through     => :follows,
+           :source      => :followed_user
+
+  def self.search( terms )
+    where 'email LIKE ?', "%#{terms}%" 
+  end
+
+  def follows?( user )
+    followed_users.include? user
+  end
+
 end

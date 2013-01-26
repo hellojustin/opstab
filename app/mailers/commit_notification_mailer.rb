@@ -1,13 +1,10 @@
 class CommitNotificationMailer < ActionMailer::Base
 
-  def commit_notification( commit )
+  def commit_notification( commit, users_to_notify )
 
     @commit = commit
     
-    recipients = [ 'jmolineaux@customink.com', 
-                   'acardy@customink.com', 
-                   'rfields@customink.com', 
-                   'jborn@customink.com' ]
+    recipients = users_to_notify.map(&email)
 
     mail( :to      => recipients,
           :from    => 'notify@hellojustin.net',

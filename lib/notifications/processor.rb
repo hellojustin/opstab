@@ -1,7 +1,13 @@
 class Notifications::Processor
 
   def process( event )
-    CommitNotificationMailer.commit_notification( event ).deliver
+    followers = event.poster.followers
+    
+    users_to_notify = followers.select do |follower|
+      follower.wants_to_hear_about? event
+    end
+
+    CommitNotificationMailer.commit_notification( event, users_to_notify ).deliver
   end
 
 end

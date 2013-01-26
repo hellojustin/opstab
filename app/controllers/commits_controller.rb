@@ -7,7 +7,8 @@ class CommitsController < ApplicationController
   respond_to :json
 
   def create
-    commit = Commit.new params[:commit]
+    commit      = Commit.new params[:commit]
+    commit.user = User.where( :email => commit.committer ).first if commit.committer
     commit.save
 
     notification_processor = Notifications::Processor.new
