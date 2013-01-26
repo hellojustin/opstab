@@ -1,0 +1,52 @@
+<aside>
+
+  <header>
+    <h2><%= current_user_email %></h2>
+  </header>
+
+  <div id="followedUsers">
+    <h3>Following</h3>
+    <ul>
+    
+      <% followed_users.each do |followed_user| %>
+        <li><%= followed_user.email %></li>
+      <% end %>
+
+      <li><a href="#">more...</a></li>
+    </ul>
+  </div>
+
+  <div id="followingUsers">
+    <h3>Followed By</h3>
+    <ul>
+
+      <% following_users.each do |following_user| %>
+        <li><%= following_user.email %></li>
+      <% end %>
+
+      <li><a href="#">more...</a></li>
+    </ul>
+  </div
+  
+</aside>
+
+<article>
+
+  <header>
+    <h2>Notifications</h2>
+  </header>
+
+  <div id="notificationsList">
+    <ul>
+      <% notifications.each do |notification| %>
+
+        <li>
+          <span class="notification-summary"><%= notification.summary %></span>
+          <span class="notification-poster"><%= notification.user %></span>
+        </li>
+
+      <% end %>
+    </ul>
+  </div>
+
+</article>

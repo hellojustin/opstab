@@ -19,7 +19,7 @@ CommitNotifier::Application.routes.draw do
 
   resources :commits
 
-  resources :notifications, :only => [ :index, :show, :update, :destroy ]
+  resources :notifications, :only => [ :index, :show ]
 
   resources :notification_rules
 
