@@ -4,7 +4,7 @@ class Integrations::Downloads::GitClientSideController < ApplicationController
 
   def post_commit
     
-    render :locals => { :user => current_user }
+    render :locals => { :user => current_user }, :layout => false, :content_type => 'text/plain'
 
   end
 
