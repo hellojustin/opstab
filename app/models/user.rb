@@ -36,8 +36,8 @@ class User < ActiveRecord::Base
     where 'email LIKE ?', "%#{terms}%" 
   end
 
-  def initialize
-    super
+  def initialize( params = {} )
+    super( params )
     self.api_key = SecureRandom.uuid
   end
 
