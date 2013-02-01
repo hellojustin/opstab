@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130126080308) do
+ActiveRecord::Schema.define(:version => 20130201025307) do
 
   create_table "commits", :force => true do |t|
     t.string   "branch"
@@ -35,6 +35,7 @@ ActiveRecord::Schema.define(:version => 20130126080308) do
   create_table "followings", :force => true do |t|
     t.integer "followed_user_id"
     t.integer "following_user_id"
+    t.string  "state",             :default => "pending_approval"
   end
 
   add_index "followings", ["followed_user_id"], :name => "index_followings_on_followed_user_id"
