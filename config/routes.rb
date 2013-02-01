@@ -23,7 +23,7 @@ CommitNotifier::Application.routes.draw do
 
   resources :integrations, :only => [ :index, :show ]
 
-  match 'integrations/downloads/git-client-side/post-commit/:api_key',
+  match 'integrations/downloads/:api_key/git-client-side/post-commit',
         :to => 'integrations/downloads/git_client_side#post_commit',
         :as => 'integrations_downloads_git_client_side_post_commit'
   
