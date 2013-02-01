@@ -1,0 +1,19 @@
+#!/bin/sh
+
+notifierUrl="<%= "#{root_url}/commits.json" %>"
+apiKey="<%= user.api_key %>"
+eventType="git-client-side-commit"
+
+log=`           git log -1 --format="%H,%aE,%aN,%ad,%s"`
+diff=`          git diff HEAD~1`
+
+revision=`      echo $log | cut -d ',' -f 1`
+committerEmail=`echo $log | cut -d ',' -f 2`
+committerName=` echo $log | cut -d ',' -f 3`
+date=`          echo $log | cut -d ',' -f 4`
+comment=`       echo $log | cut -d ',' -f 5`
+branch="We have no idea"
+
+echo "Sending commit data to $notifierUrl"
+
+curl=`curl --data "apiKey=$apiKey&commit[revision]=$revision&commit[committer]=$committerEmail&commit[date]=$date&commit[comment]=$comment&commit[branch]=$branch&commit[diff]=$diff" $notifierUrl`
