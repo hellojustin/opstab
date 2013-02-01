@@ -1,10 +1,16 @@
 class Integrations::Downloads::GitClientSideController < ApplicationController
 
-  before_filter :check_access
-
   def post_commit
     
-    render :locals => { :user => current_user }, :layout => false, :content_type => 'text/plain'
+    user = User.where( :api_key => params[:api_key] ).first
+
+    if user
+      render :locals       => { :user => user }, 
+             :layout       => false, 
+             :content_type => 'text/plain'
+    else
+      render :status       => 404
+    end
 
   end
 
