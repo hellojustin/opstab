@@ -45,4 +45,8 @@ class User < ActiveRecord::Base
     followed_users.include? user
   end
 
+  def wants_to_hear_about?( event )
+    true
+  end
+
 end

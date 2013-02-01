@@ -16,4 +16,4 @@ branch="We have no idea"
 
 echo "Sending commit data to $notifierUrl"
 
-curl=`curl --data "apiKey=$apiKey&commit[revision]=$revision&commit[committer]=$committerEmail&commit[date]=$date&commit[comment]=$comment&commit[branch]=$branch&commit[diff]=$diff" $notifierUrl`
+curl=`curl --data "api_key=$apiKey&commit[revision]=$revision&commit[committer]=$committerEmail&commit[date]=$date&commit[comment]=$comment&commit[branch]=$branch&commit[diff]=$diff" $notifierUrl`
