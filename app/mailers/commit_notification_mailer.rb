@@ -7,7 +7,7 @@ class CommitNotificationMailer < ActionMailer::Base
     recipients = users_to_notify.map( &:email )
 
     mail( :to      => recipients,
-          :from    => 'notify@hellojustin.net',
+          :from    => commit.poster.email,
           :subject => "Commit #{commit.comment}" )
 
   end
