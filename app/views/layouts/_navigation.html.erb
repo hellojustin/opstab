@@ -43,11 +43,15 @@
 
 </ul>
 
-<form class="navbar-search pull-right" action="<%= users_path %>">
+<% if user_signed_in? %>
 
-  <input type="text" 
-         name="search_terms" 
-         class="search-query" 
-         placeholder="Search for People" />
+  <form class="navbar-search pull-right" action="<%= users_path %>">
 
-</form>
+    <input type="text" 
+          name="search_terms" 
+          class="search-query" 
+          placeholder="Search for People" />
+
+  </form>
+
+<% end %>
