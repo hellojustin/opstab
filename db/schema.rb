@@ -11,26 +11,21 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130201025307) do
+ActiveRecord::Schema.define(:version => 20130202195400) do
 
-  create_table "commits", :force => true do |t|
-    t.string   "branch"
-    t.text     "comment"
-    t.string   "committer"
+  create_table "events", :force => true do |t|
     t.integer  "user_id"
-    t.datetime "date"
-    t.string   "repository"
-    t.string   "revision"
-    t.text     "diff"
+    t.string   "type",       :default => "unkown"
+    t.text     "data"
+    t.datetime "created_at",                       :null => false
+    t.datetime "updated_at",                       :null => false
   end
 
-  add_index "commits", ["branch"], :name => "index_commits_on_branch"
-  add_index "commits", ["comment"], :name => "index_commits_on_comment"
-  add_index "commits", ["committer"], :name => "index_commits_on_committer"
-  add_index "commits", ["date"], :name => "index_commits_on_date"
-  add_index "commits", ["diff"], :name => "index_commits_on_diff"
-  add_index "commits", ["repository"], :name => "index_commits_on_repository"
-  add_index "commits", ["revision"], :name => "index_commits_on_revision"
+  add_index "events", ["created_at"], :name => "index_events_on_created_at"
+  add_index "events", ["data"], :name => "index_events_on_data"
+  add_index "events", ["type"], :name => "index_events_on_type"
+  add_index "events", ["updated_at"], :name => "index_events_on_updated_at"
+  add_index "events", ["user_id"], :name => "index_events_on_user_id"
 
   create_table "followings", :force => true do |t|
     t.integer "followed_user_id"

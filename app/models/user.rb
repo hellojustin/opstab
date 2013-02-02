@@ -28,6 +28,8 @@ class User < ActiveRecord::Base
            :source      => :followed_user,
            :conditions  => { 'followings.state' => 'approved' }
   
+  has_many :events
+
   has_many :notifications
 
   has_many :integration_usages

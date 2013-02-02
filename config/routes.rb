@@ -4,7 +4,9 @@ CommitNotifier::Application.routes.draw do
 
   root :to => "home#index"
 
-  resources :users, :only => [ :index, :show ]
+  resources :users, :only => [ :index, :show ] do
+    resources :events, :only => [ :new, :create ]
+  end
 
   match 'users/:search_terms', 
         :to => 'users#index', 
@@ -17,15 +19,13 @@ CommitNotifier::Application.routes.draw do
         :to  => 'followings#create', 
         :as  => 'create_following'
 
-  resources :commits
-
   resources :notifications, :only => [ :index, :show ]
 
   resources :integrations, :only => [ :index, :show ]
 
-  match 'integrations/downloads/:api_key/git-client-side/post-commit',
+  match 'integrations/downloads/:api_key/gcs/post-commit',
         :to => 'integrations/downloads/git_client_side#post_commit',
-        :as => 'integrations_downloads_git_client_side_post_commit'
+        :as => 'integrations/downloads/gcs_pc'
   
   resources :integration_downloads, :only => [ :show ]
 

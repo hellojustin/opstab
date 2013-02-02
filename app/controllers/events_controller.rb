@@ -1,24 +1,27 @@
 require 'notifications/processor'
 
-class CommitsController < ApplicationController
+class EventsController < ApplicationController
 
-  skip_before_filter :verify_authenticity_token
+  skip_before_filter :verify_authenticity_token, :only => [ :create ]
 
   respond_to :json
+
+  def new
+  end
 
   def create
     user = User.where( :api_key => params[:api_key] ).first
 
     if params[:api_key] and user
 
-      commit      = Commit.new params[:commit]
-      commit.user = user
-      commit.save
+      event      = Event.new params[:event]
+      event.user = user
+      event.save
 
       notification_processor = Notifications::Processor.new
-      notification_processor.process commit
+      notification_processor.process event
 
-      respond_with( commit ) and return
+      respond_with( event ) and return
 
     else
 
