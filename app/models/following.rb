@@ -9,16 +9,36 @@ class Following < ActiveRecord::Base
 
     state :pending_approval, :initial => true
     state :approved
+    state :ignored
     state :cancelled
 
     event :approve do
-      transitions :from => :pending_approval, :to => :approve
+      transitions :from => :pending_approval,
+                  :to   => :approved
+    end
+
+    event :ignore do
+      transitions :from => :pending_approval,
+                  :to   => :ignored
     end
 
     event :cancel do
-      transitions :from => :approved, :to => :cancelled
+      transitions :from => [ :pending_approval, :approved, :ignored ], 
+                  :to   => :cancelled
     end
 
+  end
+
+  def include?( user )
+    [ self.followed_user, self.following_user ].include? user
+  end
+
+  def requester?( user )
+    self.following_user == user
+  end
+
+  def approver?( user )
+    self.followed_user == user
   end
 
 end

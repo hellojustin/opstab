@@ -2,9 +2,9 @@
 
 <ul>
 
-  <% followings.each do |following| %>
+  <% followed_users.each do |user| %>
 
-    <li><%= following.followed_user.email %></li>
+    <li><%= user.email %></li>
 
   <% end %>
 

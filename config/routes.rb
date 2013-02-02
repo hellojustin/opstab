@@ -10,7 +10,7 @@ CommitNotifier::Application.routes.draw do
         :to => 'users#index', 
         :as => 'search_users'
 
-  resources :followings, :only => [ :index ]
+  resources :followings, :only => [ :index, :edit, :update ]
 
   match 'following/:followed_user_id', 
         :via => 'post', 

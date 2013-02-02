@@ -20,14 +20,14 @@ class User < ActiveRecord::Base
            :class_name  => 'User',
            :through     => :followings,
            :source      => :following_user,
-           :conditions  => { :state => 'approved' }
+           :conditions  => { 'followings.state' => 'approved' }
 
   has_many :followed_users, 
            :class_name  => 'User', 
            :through     => :follows,
            :source      => :followed_user,
-           :conditions  => { :state => 'approved' }
-
+           :conditions  => { 'followings.state' => 'approved' }
+  
   has_many :notifications
 
   has_many :integration_usages

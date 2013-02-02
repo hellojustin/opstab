@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+  </head>
+
+  <body>
+  
+    <p>
+      Hi <%= @followed_user.email %>,
+    </p>
+
+    <p>
+      <%= @following_user.email %> would like to follow you on the 
+      HelloJustin.net Notifier. If you choose to approve this request, 
+      <%= @following_user.email %> will be able to receive notifications when 
+      you post events to the notifier.
+    </p>
+
+    <p>
+      <%= link_to 'Approve this Request', following_path( @following ) %>
+    </p>
+
+    <p>
+      Thanks!
+    </p>
+
+    <p>
+      - The HelloJustin.net Notifier
+    </p>
+  
+  </body>
+</html>

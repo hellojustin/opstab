@@ -12,11 +12,19 @@ class UsersController < ApplicationController
 
     followed_users  = user.followed_users
     following_users = user.followers
+    
+    pending_follows = user.follows( :include => :followed_user )
+    pending_follows.select! { |f| f.pending_approval? or f.ignored? }
+
+    requested_follows = user.followings( :include => :following_user )
+    requested_follows.select! { |f| f.pending_approval? }
 
     integrations    = user.integrations
     notifications   = user.notifications
     
     render :locals  => { :user                => user,
+                         :pending_follows     => pending_follows,
+                         :requested_follows   => requested_follows,
                          :followed_users      => followed_users,
                          :following_users     => following_users,
                          :integrations_in_use => integrations,

@@ -139,7 +139,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  aasm
+  aasm (~> 3.0.16)
   aws-sdk (~> 1.8.0)
   bootstrap-sass (~> 2.2.2.0)
   coffee-rails (~> 3.2.1)
