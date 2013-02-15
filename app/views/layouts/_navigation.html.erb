@@ -5,6 +5,7 @@
   <% if user_signed_in? %>
 
     <li><%= link_to 'My Notifications', notifications_path %></li>
+    <li><%= link_to 'New Event', new_user_event_path( current_user ) %></li>
     <li><%= link_to 'Integrations', integrations_path %></li>
 
   <% else %>

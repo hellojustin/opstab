@@ -11,11 +11,11 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130202195400) do
+ActiveRecord::Schema.define(:version => 20130214060633) do
 
   create_table "events", :force => true do |t|
     t.integer  "user_id"
-    t.string   "type",       :default => "unkown"
+    t.string   "kind",       :default => "unkown"
     t.text     "data"
     t.datetime "created_at",                       :null => false
     t.datetime "updated_at",                       :null => false
@@ -23,7 +23,7 @@ ActiveRecord::Schema.define(:version => 20130202195400) do
 
   add_index "events", ["created_at"], :name => "index_events_on_created_at"
   add_index "events", ["data"], :name => "index_events_on_data"
-  add_index "events", ["type"], :name => "index_events_on_type"
+  add_index "events", ["kind"], :name => "index_events_on_type"
   add_index "events", ["updated_at"], :name => "index_events_on_updated_at"
   add_index "events", ["user_id"], :name => "index_events_on_user_id"
 
@@ -64,11 +64,14 @@ ActiveRecord::Schema.define(:version => 20130202195400) do
   add_index "notification_rules", ["user_id"], :name => "index_notification_rules_on_user_id"
 
   create_table "notifications", :force => true do |t|
-    t.integer "user_id"
-    t.integer "commit_id"
+    t.integer  "user_id"
+    t.integer  "event_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
-  add_index "notifications", ["commit_id"], :name => "index_notifications_on_commit_id"
+  add_index "notifications", ["event_id"], :name => "index_notifications_on_commit_id"
+  add_index "notifications", ["event_id"], :name => "index_notifications_on_event_id"
   add_index "notifications", ["user_id"], :name => "index_notifications_on_user_id"
 
   create_table "users", :force => true do |t|

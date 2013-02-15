@@ -29,4 +29,12 @@ CommitNotifier::Application.routes.draw do
   
   resources :integration_downloads, :only => [ :show ]
 
+  namespace :api do
+
+    resources :users, :only => [ :index, :show ] do
+      resources :events, :only => [ :new, :create ]
+    end
+
+  end
+
 end

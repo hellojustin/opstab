@@ -32,6 +32,8 @@ class User < ActiveRecord::Base
 
   has_many :notifications
 
+  has_many :notification_rules
+
   has_many :integration_usages
 
   has_many :integrations, :through => :integration_usages
@@ -49,8 +51,14 @@ class User < ActiveRecord::Base
     followed_users.include? user
   end
 
-  def wants_to_hear_about?( event )
-    true
+  def notify!( event )
+    notification_rules.each do |rule|
+      rule.apply( event )
+    end
+  end
+
+  def notification_rules
+    [ NotificationRule.new( :user_id => self.id ) ]
   end
 
 end

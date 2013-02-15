@@ -1,0 +1,42 @@
+<h2>Create a new event</h2>
+
+<%= form_for event, 
+             :url   => user_events_path( current_user ), 
+             :html => { :class => 'form-horizontal' } do |f| %>
+
+  <%= field_set_tag 'Event Metadata' do %>
+
+    <div class='control-group'>
+      <%= f.label :kind, :class => 'control-label' %>
+      <div class='controls'>
+        <%= f.text_field :kind, :autofocus => true %>
+      </div>
+    </div>
+
+  <% end %>
+
+  <%= f.fields_for :data do |d| %>
+    <%= field_set_tag 'Event Data' do %>
+      
+      <% 5.times do |i| %>
+
+        <div class='control-group'>
+          <%= d.label "value_#{i}".to_sym, :class => 'control-label' %>
+          <div class='controls'>      
+            <%= d.text_field "value_#{i}".to_sym, :class => 'input-xxlarge' %>
+          </div>
+        </div>
+
+      <% end %>
+
+    <% end %>
+  <% end %>
+
+  <div class='control-group'>
+    <div class='controls'>
+      <%= f.submit 'Create Event', :class => 'btn btn-primary' %>
+    </div>
+  </div>
+  
+
+<% end %>

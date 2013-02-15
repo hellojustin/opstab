@@ -8,7 +8,7 @@ class NotificationMailer < ActionMailer::Base
 
     mail( :to      => recipients,
           :from    => event.user.email,
-          :subject => "#{event.type} Event Notification" )
+          :subject => "#{event.kind} Event Notification" )
 
   end
 
