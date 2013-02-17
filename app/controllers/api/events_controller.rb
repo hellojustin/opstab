@@ -16,7 +16,7 @@ module Api
         event.user = user
         event.save
 
-        respond_with( event ) and return
+        render :json => event
 
       else
 
