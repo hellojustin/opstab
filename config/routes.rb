@@ -37,8 +37,4 @@ CommitNotifier::Application.routes.draw do
 
   end
 
-  if Rails.env.development?
-    mount MailPreview => 'mail_view'
-  end
-
 end
