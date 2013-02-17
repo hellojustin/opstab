@@ -2,7 +2,9 @@
   
   <% if following.approver? current_user %>
 
-    <p class='lead'><%= following.following_user.email %> would like to follow you!</p>
+    <p class='lead'>
+      <%= following.following_user.email %> would like to follow you!
+    </p>
 
     <p>
       If you approve this request, <%= following.following_user.email %> will be 
@@ -25,7 +27,9 @@
 
   <% elsif following.requester? current_user %>
 
-    <p class='lead'>You've sent a follow request to <%= following.following_user.email %></p>
+    <p class='lead'>
+      You've sent a follow request to <%= following.followed_user.email %>
+    </p>
 
     <% if following.pending_approval? %>
       <p>
