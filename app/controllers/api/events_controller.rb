@@ -18,9 +18,6 @@ module Api
         event.user = user
         event.save
 
-        notification_processor = Notifications::Processor.new
-        notification_processor.process event
-
         respond_with( event ) and return
 
       else
