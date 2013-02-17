@@ -14,7 +14,7 @@ class FollowingsController < ApplicationController
                                :following_user_id => current_user.id )
     following.save
 
-    FollowingsMailer.follow_request( following )
+    FollowingsMailer.follow_request( following ).deliver
 
     redirect_to followings_path
 
