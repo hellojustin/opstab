@@ -1,5 +1,3 @@
-require 'notifications/processor'
-
 module Api
 
   class EventsController < ApplicationController
