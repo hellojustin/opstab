@@ -13,6 +13,9 @@ class FollowingsController < ApplicationController
     following = Following.new( :followed_user_id  => params[ :followed_user_id ],
                                :following_user_id => current_user.id )
     following.save
+
+    FollowingsMailer.follow_request( following )
+
     redirect_to followings_path
 
   end

@@ -17,4 +17,5 @@ end
 
 group :test, :development do
   gem 'rspec-rails',  '~> 2.0'
+  gem 'mail_view',    '~> 1.0.3'
 end
