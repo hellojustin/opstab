@@ -1,86 +1,25 @@
-<div>
+<header class='page-header'>
+  <h2>Notifications</h2>
+</header>
 
-  <header>
-    <h2><%= user.email %></h2>
-  </header>
-
-  <div id="followedUsers">
-    <h3>Following</h3>
-    <ul>
-
-      <% pending_follows.each do |following| %>
-        <li>
-          <%= link_to following.followed_user.email, 
-                      user_path( following.followed_user ) %>
-          <small>
-            (<%= link_to 'pending their approval', edit_following_path( following ) %>)
-          </small>
-        </li>
-      <% end %>
-    
-      <% followed_users.each do |followed_user| %>
-        <li>
-          <%= link_to followed_user.email, user_path( followed_user ) %>
-        </li>
+<div id="notificationsList">
+  
+  <% notifications.each do |notification| %>
+  
+  <div class='row'>
+    <div class='span8 media notification-card'>
+      <%= link_to user_path( notification.event.user ), :class => 'pull-left' do %>
+        <%= image_tag 'icon_user_128x128.png', :class => 'media-object img-rounded', 'data-src' => 'holder.js/64x64' %>
       <% end %>
 
-      <li><a href="#">more...</a></li>
-    </ul>
+      <div class='media-body'>
+        <%= link_to 'View Full Notification', notification_path( notification ), :class => 'btn pull-right' %>
+        <h3><%= notification.event.kind %> event <small>(30 minutes ago)</small></h3>
+        <p class='muted'><%= notification.event.user.name %></p>
+        <p><%= notification.event.summary %></p>
+      </div>
+    </div>
   </div>
-
-  <div id="followingUsers">
-    <h3>Followed By</h3>
-    <ul>
-      
-      <% requested_follows.each do |following| %>
-        <li>
-          <%= link_to following.following_user.email, 
-                      user_path( following.following_user ) %>
-          <small>
-            (<%= link_to 'pending my approval', edit_following_path( following ) %>)
-          </small>
-        </li>
-      <% end %>
-    
-
-      <% following_users.each do |following_user| %>
-        <li>
-          <%= link_to following_user.email, user_path( following_user ) %>
-        </li>
-      <% end %>
-
-      <li><a href="#">more...</a></li>
-    </ul>
-  </div>
-
-  <div id="integrationsUsed">
-    <h3>Integrations in use</h3>
-    <ul>
-      
-      <% integrations_in_use.each do |integration| %>
-        <li>
-          <%= link_to integration.name, integration_path( integration ) %>
-        </li>
-      <% end %>
-
-    </ul>
-  </div>
-
-  <div id="notificationsList">
-    <h3>Notifications</h3>
-    <ul>
-      <% notifications.each do |notification| %>
-
-        <li>
-          <span class="notification-summary"><%= notification.summary %></span>
-          <span class="notification-poster">
-            <%= link_to notification.user.email, user_path( notification.user ) %>
-          </span>
-        </li>
-
-      <% end %>
-    </ul>
-  </div>
-
+  
+  <% end %>
 </div>
-

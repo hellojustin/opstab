@@ -2,20 +2,14 @@ class NotificationsController < ApplicationController
 
   before_filter :check_access
 
+  layout 'user_sidebar_layout'
+
   def index
-    followed_users  = current_user.followed_users
-    following_users = current_user.followers
-
-    notifications   = current_user.notifications
-
-    render :locals  => { :user            => current_user,
-                         :followed_users  => followed_users,
-                         :following_users => following_users,
-                         :notifications   => notifications }
+    render :locals => { :notifications => current_user.notifications }
   end
 
   def show
-    render :locals  => { :notification => Notification.find( params[:id] ) }
+    render :locals => { :notification => Notification.find( params[:id] ) }
   end
 
 end

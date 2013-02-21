@@ -1,0 +1,93 @@
+<aside class='well well-small'>
+
+  <div class='row'>
+    <div class='span4 media user-card'>
+      <%= link_to user_path( current_user ), :class => 'pull-left' do %>
+        <%= image_tag 'icon_user_64x64.png', :class => 'media-object img-rounded', 'data-src' => 'holder.js/64x64' %>
+      <% end %>
+
+      <div class='media-body'>
+        <h3><%= current_user.name %></h3>
+        <p class='muted'><%= current_user.email %></p>
+      </div>
+    </div>
+  </div>
+
+  <div class='row-fluid'>
+
+    <div class='span3 pagination-centered'>
+      <h4><%= current_user.events.count %></h4>
+      Events
+    </div>
+
+    <div class='span3 pagination-centered'>
+      <h4><%= current_user.notification_rules.count %></h4>
+      Notification Rules
+    </div>
+      
+    <div class='span3 pagination-centered'>
+      <h4><%= current_user.followers.count %></h4>
+      Followers
+    </div>
+
+    <div class='span3 pagination-centered'>
+      <h4><%= current_user.followed_users.count %></h4>
+      Following
+    </div>
+
+  </div>
+
+</aside>
+
+<aside class='well well-small'>
+  <header>
+    <b>Your Network</b>
+  </header>
+
+  <ul class='nav nav-list'>
+    <li class='nav-header'>Recent Follows:</li>
+    
+    <% current_user.pending_follows.each do |following| %>
+      <li>
+        <%= link_to following.followed_user.email, 
+                    user_path( following.followed_user ) %>
+        <small>
+          (<%= link_to 'pending their approval', edit_following_path( following ) %>)
+        </small>
+      </li>
+    <% end %>
+  
+    <% current_user.followed_users.each do |followed_user| %>
+      <li>
+        <%= link_to followed_user.email, user_path( followed_user ) %>
+      </li>
+    <% end %>
+
+    <li><a href="#">all...</a></li>
+    
+  </ul>
+
+  <ul class='nav nav-list'>
+    <li class='nav-header'>Recent Followers</li>
+
+    <% current_user.requested_follows.each do |following| %>
+      <li>
+        <%= link_to following.following_user.email, 
+                    user_path( following.following_user ) %>
+        <small>
+          (<%= link_to 'pending my approval', edit_following_path( following ) %>)
+        </small>
+      </li>
+    <% end %>
+  
+
+    <% current_user.followers.each do |follower| %>
+      <li>
+        <%= link_to follower.email, user_path( follower ) %>
+      </li>
+    <% end %>
+
+    <li><a href="#">all...</a></li>
+
+  </ul>
+</aside>

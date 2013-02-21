@@ -1,58 +1,41 @@
-<aside>
+<header class='page-header'>
+  <h2>Notifications</h2>
+</header>
 
-  <header>
-    <h2><%= user.email %></h2>
-  </header>
+<div id="notificationsList">
+  
+  <% notifications.each do |notification| %>
+  
+  <div class='row'>
 
-  <div id="followedUsers">
-    <h3>Following</h3>
-    <ul>
-    
-      <% followed_users.each do |followed_user| %>
-        <li>
-          <%= link_to followed_user.email, user_path( followed_user ) %>
-        </li>
+    <div class='span8 media notification-card'>
+
+      <%= link_to user_path( notification.event.user ), :class => 'pull-left' do %>
+        <%= image_tag 'icon_user_128x128.png', 
+                      :class => 'media-object img-rounded',
+                      'data-src' => 'holder.js/64x64' %>
       <% end %>
 
-      <li><a href="#">more...</a></li>
-    </ul>
-  </div>
+      <div class='media-body'>
+        <%= link_to 'View Full Notification', 
+                    notification_path( notification ), 
+                    :class => 'btn pull-right' %>
+        <h3>
+          <%= notification.event.kind %> event
+          <small>
+            (<%= time_ago_in_words( notification.created_at ) %> ago)
+          </small>
+        </h3>
 
-  <div id="followingUsers">
-    <h3>Followed By</h3>
-    <ul>
+        <p class='muted'><%= notification.event.user.name %></p>
 
-      <% following_users.each do |following_user| %>
-        <li>
-          <%= link_to following_user.email, user_path( following_user ) %>
-        </li>
-      <% end %>
+        <p><%= notification.event.summary %></p>
 
-      <li><a href="#">more...</a></li>
-    </ul>
+      </div>
+
+    </div>
+
   </div>
   
-</aside>
-
-<article>
-
-  <header>
-    <h2>Notifications</h2>
-  </header>
-
-  <div id="notificationsList">
-    <ul>
-      <% notifications.each do |notification| %>
-
-        <li>
-          <span class="notification-summary"><%= notification.summary %></span>
-          <span class="notification-poster">
-            <%= link_to notification.user.email, user_path( notification.user ) %>
-          </span>
-        </li>
-
-      <% end %>
-    </ul>
-  </div>
-
-</article>
+  <% end %>
+</div>
