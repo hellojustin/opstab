@@ -1,21 +1,10 @@
 <div id="followersList">
 
-  <% @user.pending_follows.each do |following| %>
-    <li>
-      <% if following.include? current_user %>
-      <%= link_to following.followed_user.email, 
-                  user_path( following.followed_user ) %>
-      <small>
-        (<%= link_to 'pending their approval', edit_following_path( following ) %>)
-      </small>
-    </li>
-    <% end %>
-  <% end %>
+  <ul class='unstyled'>
 
-  <% @user.followed_users.each do |followed_user| %>
-    <li>
-      <%= link_to followed_user.email, user_path( followed_user ) %>
-    </li>
-  <% end %>
+  <%= render :partial => 'followings/followers_list', 
+             :locals => { :user => @user, :full_row => true } %>
+
+  </ul>
 
 </div>

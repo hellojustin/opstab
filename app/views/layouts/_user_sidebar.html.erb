@@ -7,20 +7,12 @@
   <aside class='well well-small'>
 
     <div class='row'>
-      <%= link_to user_path( user ), :class => 'muted' do %>
 
-        <div class='span4 media user-card'>
-          <%= image_tag 'icon_user_64x64.png', 
-                        :class => 'media-object img-rounded pull-left', 
-                        'data-src' => 'holder.js/64x64' %>
+      <div class='span4'>
+        <%= render :partial => 'users/user_card',
+                   :locals  => { :user => user, :featured_user => true } %> 
+      </div>
 
-          <div class='media-body'>
-            <h3><%= user.name %></h3>
-            <p class='muted'><%= user.email %></p>
-          </div>
-        </div>
-
-      <% end %>
     </div>
 
     <div class='row-fluid'>
@@ -63,60 +55,29 @@
   <aside class='well well-small'>
     <header>
       <% if user == current_user %>
-        <b>Your Network</b>
+        <h4>Your Network</h4>
       <% else %>
-        <b><%= user.name %>'s Network</b>
+        <h4><%= user.name %>'s Network</h4>
       <% end %>
     </header>
 
-    <ul class='nav nav-list'>
-      <li class='nav-header'>Recent Follows:</li>
-      
-      <% user.pending_follows.each do |following| %>
-        <% if following.include? current_user %>
-          <li>
-            <%= link_to following.followed_user.email, 
-                        user_path( following.followed_user ) %>
-            <small>
-              (<%= link_to 'pending their approval', edit_following_path( following ) %>)
-            </small>
-          </li>
-        <% end %>
-      <% end %>
-    
-      <% user.followed_users.each do |followed_user| %>
-        <li>
-          <%= link_to followed_user.email, user_path( followed_user ) %>
-        </li>
-      <% end %>
+    <ul class='unstyled'>
+      <li><i>Recently Following</i></li>
+  
+      <%= render :partial => 'followings/following_list', 
+                 :locals  => { :user => user, :full_row => false } %>
 
-      <li><a href="#">all...</a></li>
+      <li><%= link_to 'all following...', user_following_path( user ) %></li>
       
     </ul>
 
-    <ul class='nav nav-list'>
-      <li class='nav-header'>Recent Followers</li>
+    <ul class='unstyled'>
+      <li><i>Recent Followers</i></li>
 
-      <% user.requested_follows.each do |following| %>
-        <% if following.include? current_user %>
-          <li>
-            <%= link_to following.following_user.email, 
-                        user_path( following.following_user ) %>
-            <small>
-              (<%= link_to 'pending my approval', edit_following_path( following ) %>)
-            </small>
-          </li>
-        <% end %>
-      <% end %>
-    
+      <%= render :partial => 'followings/followers_list', 
+                 :locals  => { :user => user, :full_row => false } %>
 
-      <% user.followers.each do |follower| %>
-        <li>
-          <%= link_to follower.email, user_path( follower ) %>
-        </li>
-      <% end %>
-
-      <li><a href="#">all...</a></li>
+      <li><%= link_to 'all followers...', user_followers_path( user ) %></li>
 
     </ul>
   </aside>

@@ -1,0 +1,23 @@
+<% user.pending_follows.each do |following| %>
+  <% if following.requester? current_user %>
+    <li class='row-fluid'>
+      
+      <%= render :partial => 'followings/following_row', 
+                 :locals  => { :user         => following.followed_user, 
+                               :following    => following,
+                               :pending_text => 'pending',
+                               :full_row     => full_row } %>
+
+    </li>
+  <% end %>
+<% end %>
+
+<% user.followers.each do |follower| %>
+  <li class='row-fluid'>
+
+    <%= render :partial => 'followings/following_row', 
+               :locals  => { :user     => follower,
+                             :full_row => full_row } %>
+  
+  </li>
+<% end %>

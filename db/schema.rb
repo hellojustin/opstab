@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130220054413) do
+ActiveRecord::Schema.define(:version => 20130223104319) do
 
   create_table "events", :force => true do |t|
     t.integer  "user_id"
@@ -88,6 +88,7 @@ ActiveRecord::Schema.define(:version => 20130220054413) do
     t.string   "last_sign_in_ip"
     t.string   "api_key"
     t.string   "name"
+    t.text     "description"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

@@ -1,0 +1,25 @@
+<%= link_to user_path( user ), :class => 'muted' do %>
+
+  <div class='media user-card'>
+    <% if featured_user %>
+      <%= image_tag 'icon_user_64x64.png', 
+                    :class => 'media-object img-rounded pull-left', 
+                    'data-src' => 'holder.js/64x64' %>
+    <% else %>
+      <%= image_tag 'icon_user_32x32.png', 
+                    :class => 'media-object img-rounded pull-left', 
+                    'data-src' => 'holder.js/32x32' %>
+    <% end %>
+
+    <div class='media-body'>
+      <% if featured_user %>
+        <h3><%= user.name %></h3>
+        <p class='muted'><%= user.email %></p>
+      <% else %>
+        <b><%= user.name %></b>
+        <p class='muted'><small><%= user.email %></small></p>
+      <% end %>
+    </div>
+  </div>
+
+<% end %>

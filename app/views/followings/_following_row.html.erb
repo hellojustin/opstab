@@ -1,0 +1,27 @@
+<div class='span<%= full_row ? 4 : 11 %>'>
+
+  <%= render :partial => 'users/user_card',
+             :locals  => { :user          => user,
+                           :featured_user => false } %>
+
+</div>
+
+<% if full_row %>
+  <div class='span7'>
+    <p class='muted'>
+      <%= user.description %>
+    </p>
+  </div>
+<% end %>
+
+<div class='span1'>
+
+  <% if local_assigns.has_key?( :following ) %>
+
+    <%= link_to edit_following_path( following ), :class => 'pull-right' do %>
+      <span class='label label-info'><%= pending_text || 'pending' %></span>
+    <% end %>
+
+  <% end %>
+
+</div>
