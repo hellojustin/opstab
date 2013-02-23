@@ -1,8 +1,15 @@
 class EventsController < ApplicationController
 
   before_filter :check_access
+  layout        :determine_layout
 
   respond_to :json
+
+  def index
+
+    @user = User.find params[ :user_id ]
+
+  end
 
   def new    
 
@@ -26,6 +33,19 @@ class EventsController < ApplicationController
 
       redirect_to :new
 
+    end
+
+  end
+
+  private
+
+  def determine_layout
+
+    case action_name
+    when 'index'
+      'users'
+    else
+      'application'
     end
 
   end

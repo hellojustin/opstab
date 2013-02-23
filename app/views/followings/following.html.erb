@@ -1,0 +1,21 @@
+<div id="followingList">
+
+  <% @user.requested_follows.each do |following| %>
+    <li>
+      <% if following.include? current_user %>
+        <%= link_to following.following_user.email, 
+                    user_path( following.following_user ) %>
+        <small>
+          (<%= link_to 'pending my approval', edit_following_path( following ) %>)
+        </small>
+      </li>
+    <% end %>
+  <% end %>
+
+  <% @user.followers.each do |follower| %>
+    <li>
+      <%= link_to follower.email, user_path( follower ) %>
+    </li>
+  <% end %>
+
+</div>

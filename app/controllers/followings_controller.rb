@@ -1,6 +1,7 @@
 class FollowingsController < ApplicationController
 
   before_filter :check_access
+  layout        :determine_layout
 
   def index
 
@@ -46,6 +47,27 @@ class FollowingsController < ApplicationController
     end
 
     redirect_to followings_path
+
+  end
+
+  def followers
+    @user = User.find params[:user_id] 
+  end
+
+  def following
+    @user = User.find params[:user_id]
+  end
+
+  private
+
+  def determine_layout
+
+    case action_name
+    when 'followers', 'following'
+      'users'
+    else
+      'application'
+    end
 
   end
 

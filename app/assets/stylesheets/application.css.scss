@@ -30,7 +30,7 @@
   }
 }
 
-.notification-card {
+.notification-card, .event-card {
   border-bottom : 1px solid #eee;
   margin-bottom : 15px;
   padding-bottom : 5px;
@@ -38,4 +38,8 @@
   h3 {
     margin : 0;
   }
+}
+
+a.muted {
+  color : #333;
 }

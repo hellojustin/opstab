@@ -5,7 +5,9 @@ CommitNotifier::Application.routes.draw do
   root :to => "home#index"
 
   resources :users, :only => [ :index, :show ] do
-    resources :events, :only => [ :new, :create ]
+    resources :events, :only => [ :new, :create, :index ]
+    match 'followers', :to => 'followings#followers', :as => 'followers'
+    match 'following', :to => 'followings#following', :as => 'following'
   end
 
   match 'users/:search_terms', 

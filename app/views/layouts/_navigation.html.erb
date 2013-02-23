@@ -4,9 +4,15 @@
 
   <% if user_signed_in? %>
 
-    <li><%= link_to 'My Notifications', notifications_path %></li>
-    <li><%= link_to 'New Event', new_user_event_path( current_user ) %></li>
-    <li><%= link_to 'Integrations', integrations_path %></li>
+    <li class=<%= 'active' if current_page? notifications_path %> >
+      <%= link_to 'My Notifications', notifications_path %>
+    </li>
+    <li class=<%= 'active' if current_page? new_user_event_path( current_user ) %> >
+      <%= link_to 'New Event', new_user_event_path( current_user ) %>
+    </li>
+    <li class=<%= 'active' if current_page? integrations_path %> >
+      <%= link_to 'Integrations', integrations_path %>
+    </li>
 
   <% else %>
 
@@ -20,7 +26,11 @@
 
   <% if user_signed_in? %>
 
-    <li class='dropdown'>
+    <li class='dropdown 
+          <%= 'active' if ( current_page?( user_events_path current_user ) or 
+                            current_page?( user_followers_path current_user ) or 
+                            current_page?( user_following_path current_user ) or
+                            current_page?( edit_user_registration_path ) ) %>'>
 
       <a href='#' class='dropdown-toggle' data-toggle='dropdown'>
         <%= current_user.email %>

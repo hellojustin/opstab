@@ -1,0 +1,36 @@
+
+<div id="eventsList">
+  
+  <% @user.events.each do |event| %>
+  
+    <div class='row'>
+
+      <div class='span8 media event-card'>
+
+        <%= link_to user_path( event.user ), :class => 'pull-left' do %>
+          <%= image_tag 'icon_user_128x128.png', 
+                        :class => 'media-object img-rounded',
+                        'data-src' => 'holder.js/64x64' %>
+        <% end %>
+
+        <div class='media-body'>
+          <h3>
+            <%= event.kind %> event
+            <small>
+              (<%= time_ago_in_words event.created_at %> ago)
+            </small>
+          </h3>
+
+          <p class='muted'><%= event.user.name %></p>
+
+          <p><%= event.summary %></p>
+
+        </div>
+
+      </div>
+
+    </div>
+  
+  <% end %>
+
+</div>

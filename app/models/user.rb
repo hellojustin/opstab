@@ -52,13 +52,13 @@ class User < ActiveRecord::Base
   end
 
   def pending_follows
-    follows( :include => :followed_user ).select! do |f| 
+    follows( :include => :followed_user ).select do |f| 
       f.pending_approval? or f.ignored? 
     end
   end
 
   def requested_follows
-    followings( :include => :following_user ).select! do |f|
+    followings( :include => :following_user ).select do |f|
       f.pending_approval?
     end
   end
