@@ -1,11 +1,58 @@
-<article>
+<header class='page-header'>
+  <h2>Notification Details</h2>
+</header>
 
-  <header>
-    <h2><%= notification.user %> says...</h2>
-  </header>
+<div class='row'>
 
-  <div id="notificationDetail">
-    <%= notification.summary %>
+  <div class='span12 media notification-card'>
+
+    <%= link_to user_path( @notification.event.user ), :class => 'pull-left' do %>
+      <%= image_tag 'icon_user_128x128.png', 
+                    :class => 'media-object img-rounded',
+                    'data-src' => 'holder.js/64x64' %>
+    <% end %>
+
+    <div class='media-body'>
+      <%= link_to 'Back to all notifications', 
+                  notifications_path, 
+                  :class => 'btn pull-right' %>
+      <h3>
+        <%= @notification.event.kind %> event
+        <small>
+          (<%= time_ago_in_words( @notification.created_at ) %> ago)
+        </small>
+      </h3>
+
+      <p class='muted'><%= @notification.event.user.name %></p>
+
+      <p><%= @notification.event.summary %></p>
+
+    </div>
+
   </div>
 
-</article>
+</div>
+
+<div class='row'>
+
+  <table class='span12 table table-striped'>
+  
+    <thead>
+      <tr>
+        <th>Key</th>
+        <th>Value</th>
+      </tr>
+    </thead>
+
+    <tbody>
+    <% @notification.event.data.each do |k,v| %>
+      <tr>
+        <td><%= k %></td>
+        <td><%= v %></td>
+      </tr>
+    <% end %>
+    </tbody>
+
+  </table>
+
+</div>

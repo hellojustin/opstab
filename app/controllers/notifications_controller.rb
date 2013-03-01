@@ -1,15 +1,33 @@
 class NotificationsController < ApplicationController
 
   before_filter :check_access
-
-  layout 'user_sidebar_layout'
+  layout        :determine_layout
 
   def index
-    render :locals => { :notifications => current_user.notifications }
+    @user          = current_user
+    @notifications = @user.notifications
   end
 
   def show
-    render :locals => { :notification => Notification.find( params[:id] ) }
+    @notification = Notification.find( params[:id] )
+    @user         = current_user
+    
+    if @notification.user != current_user 
+      render :status => 404
+    end
+  end
+
+  private
+
+  def determine_layout
+
+    case action_name
+    when 'index'
+      'user_sidebar_layout'
+    else
+      'application'
+    end
+
   end
 
 end
