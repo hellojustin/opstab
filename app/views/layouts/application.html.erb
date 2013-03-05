@@ -27,11 +27,7 @@
 
       <div class="container">
 
-        <div class="row">
-         
-          <%= content_for?( :content ) ? yield( :content ) : yield %>
-
-        </div>
+        <%= content_for?( :content ) ? yield( :content ) : yield %>
 
       </div>
       

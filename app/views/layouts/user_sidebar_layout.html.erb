@@ -1,12 +1,16 @@
 <% content_for :content do %>
 
-  <div class="span4">
-    <%= render 'layouts/user_sidebar' %>
-  </div>
+  <div class='row'>
 
-  <div class="span8">
-    <%= render 'layouts/messages' %>
-    <%= content_for?( :user_content ) ? yield( :user_content ) : yield %>
+    <div class="span4">
+      <%= render 'layouts/user_sidebar' %>
+    </div>
+
+    <div class="span8">
+      <%= render 'layouts/messages' %>
+      <%= content_for?( :user_content ) ? yield( :user_content ) : yield %>
+    </div>
+
   </div>
 
 <% end %>
