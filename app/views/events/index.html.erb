@@ -8,7 +8,7 @@
       <div class='span8 media event-card'>
 
         <%= link_to user_path( event.user ), :class => 'pull-left' do %>
-          <%= image_tag 'icon_user_128x128.png', 
+          <%= image_tag gravatar_url( event.user, 64 ), 
                         :class => 'media-object img-rounded',
                         'data-src' => 'holder.js/64x64' %>
         <% end %>

@@ -3,21 +3,18 @@ class FollowingsController < ApplicationController
   before_filter :check_access
   layout        :determine_layout
 
-  def index
-
-    render :locals => { :followed_users => current_user.followed_users }
-
-  end
-
   def create
 
-    following = Following.new( :followed_user_id  => params[ :followed_user_id ],
+    followed_user = User.find( params[ :followed_user_id ] )
+    following = Following.new( :followed_user_id  => followed_user.id,
                                :following_user_id => current_user.id )
     following.save
 
     FollowingsMailer.follow_request( following ).deliver
 
-    redirect_to followings_path
+    flash[:notice] = "Your follow request has been sent to #{followed_user.name}."
+
+    redirect_to user_following_path( current_user )
 
   end
 
