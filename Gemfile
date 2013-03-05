@@ -21,3 +21,7 @@ end
 group :test, :development do
   gem 'rspec-rails',   '~> 2.0'
 end
+
+source 'http://gems.github.com'
+
+gem 'artemv-diff_to_html', '~> 1.0.3'
