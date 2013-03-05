@@ -6,6 +6,12 @@
   <div><%= f.label :email %><br />
   <%= f.email_field :email, :autofocus => true %></div>
 
+  <div><%= f.label :name %><br />
+  <%= f.text_field :name %></div>
+
+  <div><%= f.label :description %><br />
+  <%= f.text_area :description %></div>
+
   <%# if resource.class.reconfirmable && resource.unconfirmed_email.present? %>
     <!-- div>Currently waiting confirmation for: <%#= resource.unconfirmed_email %></div -->
   <%# end %>

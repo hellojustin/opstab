@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password, :password_confirmation, :remember_me
+  attr_accessible :email, :name, :password, :password_confirmation, :remember_me
 
   has_many :followings,
            :class_name  => 'Following',
@@ -37,6 +37,8 @@ class User < ActiveRecord::Base
   has_many :integration_usages
 
   has_many :integrations, :through => :integration_usages
+
+  validates_presence_of :name
 
   def self.search( terms )
     where 'email LIKE ?', "%#{terms}%" 
