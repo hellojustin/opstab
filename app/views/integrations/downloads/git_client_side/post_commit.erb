@@ -2,7 +2,7 @@
 
 apiKey="<%= user.api_key %>"
 notifierUrl="<%= "#{root_url}api/users/$apiKey/events.json" %>"
-eventType="git-client-side-commit"
+eventType="Local Git Commit"
 
 log=`           git log -1 --format="%H,%aE,%aN,%ad,%s"`
 diff=`          git diff HEAD~1`
@@ -16,4 +16,4 @@ branch="We have no idea"
 
 echo "Sending commit data to $notifierUrl"
 
-curl=`curl --data "api_key=$apiKey&event[kind]=$eventType&event[summary]=$comment&event[data][revision]=$revision&event[data][committer_email]=$committerEmail&event[data][committer_name]=$committerName&event[data][date]=$date&event[data][comment]=$comment&event[data][branch]=$branch&event[data][diff]=$diff" $notifierUrl`
+curl=`curl --data-urlencode "api_key=$apiKey" --data-urlencode "event[kind]=$eventType" --data-urlencode "event[summary]=$comment" --data-urlencode "event[data][revision]=$revision" --data-urlencode "event[data][committer_email]=$committerEmail" --data-urlencode "event[data][committer_name]=$committerName" --data-urlencode "event[data][date]=$date" --data-urlencode "event[data][comment]=$comment" --data-urlencode "event[data][branch]=$branch" --data-urlencode "event[data][diff]=$diff" $notifierUrl`
