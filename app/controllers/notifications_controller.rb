@@ -5,7 +5,7 @@ class NotificationsController < ApplicationController
 
   def index
     @user          = current_user
-    @notifications = @user.notifications.sort { |a,b| a.created_at <=> b.created_at }
+    @notifications = @user.notifications.sort { |a,b| b.created_at <=> a.created_at }
   end
 
   def show
