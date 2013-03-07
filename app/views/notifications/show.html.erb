@@ -17,7 +17,7 @@
                   notifications_path, 
                   :class => 'btn pull-right' %>
       <h3>
-        <%= @notification.event.kind %> event
+        <%= @notification.event.kind %>
         <small>
           (<%= time_ago_in_words( @notification.created_at ) %> ago)
         </small>
