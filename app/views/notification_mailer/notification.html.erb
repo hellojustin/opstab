@@ -14,11 +14,7 @@
 
         <div class='span12 media notification-card'>
 
-          <%= link_to user_url( @notification.event.user ), :class => 'pull-left' do %>
-            <%= image_tag gravatar_url( @notification.event.user, 128 ), 
-                          :class => 'media-object img-rounded',
-                          'data-src' => 'holder.js/128x128' %>
-          <% end %>
+          <%= link_to @notification.event.user.name user_url( @notification.event.user ), :class => 'pull-left' %>
 
           <div class='media-body'>
             <%= link_to 'View in Browser', 
