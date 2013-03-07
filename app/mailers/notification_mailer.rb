@@ -1,6 +1,7 @@
 class NotificationMailer < ActionMailer::Base
 
   include NotificationsHelper
+  include UsersHelper
 
   def notification( notification, users_to_notify )
 
