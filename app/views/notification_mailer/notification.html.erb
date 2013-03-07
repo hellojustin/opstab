@@ -8,28 +8,43 @@
 
   <body>
     
-    <div class='container'>
+    <div class="container" style="text-shadow: none !important; background-color: transparent !important; color: #000 !important; box-shadow: none !important; margin-left: auto; *zoom: 1; margin-right: auto; width: auto;">
     
-      <div class='row'>
+      <div class="row" style="text-shadow: none !important; background-color: transparent !important; color: #000 !important; box-shadow: none !important; margin-left: 0; *zoom: 1;">
 
-        <div class='span12 media notification-card'>
+        <div class="span12 media notification-card" style="margin-bottom: 15px; box-sizing: border-box; overflow: hidden; text-shadow: none !important; -moz-box-sizing: border-box; margin-top: 0; background-color: transparent !important; *overflow: visible; color: #000 !important; border-bottom-style: solid; border-bottom-width: 1px; display: block; min-height: 1px; box-shadow: none !important; border-bottom-color: #eee; -webkit-box-sizing: border-box; margin-left: 0; padding-bottom: 5px; zoom: 1; width: 100%; float: none;">
 
-          <%= link_to @notification.event.user.name, user_url( @notification.event.user ), :class => 'pull-left' %>
+          <%= link_to user_url( @notification.event.user ), 
+                      :class => 'pull-left',
+                      :style => 'margin-bottom: 10px; text-shadow: none !important; background-color: transparent !important; text-decoration: none; color: #000 !important; display: block; box-shadow: none !important; margin-right: 10px; float: none;',
+                      do %>
+            <%= image_tag gravatar_url( @notification.event.user, 128 ), 
+                          :class => 'media-object img-rounded',
+                          :style => 'max-width: 100% !important; -webkit-border-radius: 6px; page-break-inside: avoid; text-shadow: none !important; border: 0; background-color: transparent !important; color: #000 !important; display: block; box-shadow: none !important; -ms-interpolation-mode: bicubic; vertical-align: middle; height: auto; margin-left: 0; -moz-border-radius: 6px; margin-right: 0; border-radius: 6px; width: auto\9;'
+                          'data-src' => 'holder.js/128x128' %>
+          <% end %>
 
-          <div class='media-body'>
+          <div class="media-body" style="overflow: hidden; text-shadow: none !important; background-color: transparent !important; *overflow: visible; color: #000 !important; box-shadow: none !important; zoom: 1;">
+          
             <%= link_to 'View in Browser', 
                         notification_url( @notification ), 
-                        :class => 'btn pull-right' %>
-            <h3>
-              <%= @notification.event.kind %> event
-              <small>
+                        :class => 'btn pull-right',
+                        :style => '-webkit-border-radius: 4px; margin-bottom: 10px; -webkit-box-shadow: inset 0 1px 0 rgba(255,255,255,0.2),0 1px 2px rgba(0,0,0,0.05); cursor: pointer; font-size: 14px; text-shadow: none !important; *background-color: #e6e6e6; *border: 0; filter: progid:DXImageTransform.Microsoft.gradient(enabled=false); line-height: 20px; *display: inline; background-color: transparent !important; background-repeat: repeat-x; border-color: rgba(0,0,0,0.15) rgba(0,0,0,0.15) rgba(0,0,0,0.25); background-position: bottom; border-style: solid; padding: 4px 12px; border-width: 1px; text-decoration: none; color: #000 !important; display: block; box-shadow: none !important; vertical-align: middle; text-align: center; margin-left: 10px; -moz-box-shadow: inset 0 1px 0 rgba(255,255,255,0.2),0 1px 2px rgba(0,0,0,0.05); -moz-border-radius: 4px; *zoom: 1; float: none; *margin-left: 0; border-radius: 4px;' %>
+            
+            <h3 style="text-rendering: optimizelegibility; margin: 0; font-size: 24.5px; font-weight: bold; orphans: 3; text-shadow: none !important; line-height: 40px; font-family: inherit; background-color: transparent !important; widows: 3; color: #000 !important; box-shadow: none !important; page-break-after: avoid;">            
+              <%= @notification.event.kind %>
+              <small style="font-weight: normal; font-size: 14px; text-shadow: none !important; line-height: 1; background-color: transparent !important; color: #000 !important; box-shadow: none !important;">
                 (<%= @notification.created_at.to_s( :human_verbose ) %>)
               </small>
             </h3>
 
-            <p class='muted'><%= @notification.event.user.name %></p>
+            <p class="muted" style="margin: 0 0 10px; orphans: 3; text-shadow: none !important; background-color: transparent !important; widows: 3; color: #000 !important; box-shadow: none !important;">Justin Molineaux</p>
+              <%= @notification.event.user.name %>
+            </p>
 
-            <p><%= @notification.event.summary %></p>
+            <p style="margin: 0 0 10px; orphans: 3; text-shadow: none !important; background-color: transparent !important; widows: 3; color: #000 !important; box-shadow: none !important;">Including view helpers in NotificationMailer the correct way.</p>
+              <%= @notification.event.summary %>
+            </p>
 
           </div>
 
@@ -37,25 +52,29 @@
 
       </div>
 
-      <div class='row'>
+      <div class="row" style="text-shadow: none !important; background-color: transparent !important; color: #000 !important; box-shadow: none !important; margin-left: 0; *zoom: 1;">
 
-        <table class='span12 table'>
+        <table class="span12 table" style="max-width: 100%; margin-bottom: 20px; box-sizing: border-box; text-shadow: none !important; border-collapse: collapse; -moz-box-sizing: border-box; background-color: transparent !important; color: #000 !important; display: block; border-spacing: 0; min-height: 1px; box-shadow: none !important; -webkit-box-sizing: border-box; margin-left: 0; width: 100%; float: none;" bgcolor="transparent !important">
         
-          <thead>
-            <tr>
-              <th>Key</th>
-              <th>Value</th>
+          <thead style="text-shadow: none !important; background-color: transparent !important; color: #000 !important; display: table-header-group; box-shadow: none !important;">
+            <tr style="page-break-inside: avoid; text-shadow: none !important; background-color: transparent !important; color: #000 !important; box-shadow: none !important;" bgcolor="transparent !important">
+              <th style="text-shadow: none !important; font-weight: bold; border-top-color: #ddd; background-color: transparent !important; line-height: 20px; color: #000 !important; padding: 8px; box-shadow: none !important; border-top-style: solid; border-top-width: 0; text-align: left; vertical-align: bottom;" bgcolor="transparent !important" valign="bottom" align="left">
+                Key
+              </th>
+              <th style="text-shadow: none !important; font-weight: bold; border-top-color: #ddd; background-color: transparent !important; line-height: 20px; color: #000 !important; padding: 8px; box-shadow: none !important; border-top-style: solid; border-top-width: 0; text-align: left; vertical-align: bottom;" bgcolor="transparent !important" valign="bottom" align="left">
+                Value
+              </th>
             </tr>
           </thead>
 
-          <tbody>
+          <tbody style="text-shadow: none !important; color: #000 !important; background-color: transparent !important; box-shadow: none !important;">
           <% @notification.event.data.each do |k,v| %>
             
-            <tr>
-              <td>
+            <tr style="page-break-inside: avoid; text-shadow: none !important; background-color: transparent !important; color: #000 !important; box-shadow: none !important;" bgcolor="transparent !important">
+              <td style="text-shadow: none !important; border-top-color: #ddd; background-color: transparent !important; line-height: 20px; color: #000 !important; padding: 8px; box-shadow: none !important; border-top-style: solid; border-top-width: 1px; text-align: left; vertical-align: top;" bgcolor="transparent !important" valign="top" align="left">
                 <%= k %>
               </td>
-              <td>
+              <td style="text-shadow: none !important; border-top-color: #ddd; background-color: transparent !important; line-height: 20px; color: #000 !important; padding: 8px; box-shadow: none !important; border-top-style: solid; border-top-width: 1px; text-align: left; vertical-align: top;" bgcolor="transparent !important" valign="top" align="left">
                 <%= (k == 'diff') ? convert_to_formatted_diff( v ).html_safe : v %>
               </td>
             </tr>
