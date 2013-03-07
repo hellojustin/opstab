@@ -1,14 +1,16 @@
 class NotificationMailer < ActionMailer::Base
 
-  def notification( event, users_to_notify )
+  include NotificationHelper
 
-    @event = event
+  def notification( notification, users_to_notify )
+
+    @notification = notification
     
     recipients = users_to_notify.map( &:email )
 
     mail( :to      => recipients,
-          :from    => event.user.email,
-          :subject => "#{event.kind} Event Notification" )
+          :from    => @notification.event.user.email,
+          :subject => "#{@notification.event.kind} from #{@notification.event.user.name}" )
 
   end
 

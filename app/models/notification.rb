@@ -13,7 +13,7 @@ class Notification < ActiveRecord::Base
   
   def deliver
     users = [ user ]
-    NotificationMailer.notification( event, users ).deliver
+    NotificationMailer.notification( self, users ).deliver
   end
 
 
