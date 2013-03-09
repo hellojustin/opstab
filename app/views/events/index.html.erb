@@ -16,10 +16,11 @@
         <div class='media-body'>
           <h3>
             <%= event.kind %> event
-            <small>
-              (<%= time_ago_in_words event.created_at %> ago)
-            </small>
           </h3>
+          
+          <small>
+            <%= event.created_at.to_s :human_brief %>
+          </small>
 
           <p class='muted'><%= event.user.name %></p>
 

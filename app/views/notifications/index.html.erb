@@ -22,10 +22,11 @@
                     :class => 'btn pull-right' %>
         <h3>
           <%= notification.event.kind %> event
-          <small>
-            (<%= time_ago_in_words( notification.created_at ) %> ago)
-          </small>
         </h3>
+
+        <small>
+          <%= notification.created_at.to_s :human_brief %>
+        </small>
 
         <p class='muted'><%= notification.event.user.name %></p>
 

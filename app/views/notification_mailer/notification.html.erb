@@ -22,15 +22,14 @@
         <td style="padding:5px; vertical-align:top;">
           <%= link_to notification_url( @notification ), 
                       :style => 'text-decoration:none;' do %>
-          
             <h3 style="margin:0; font-size:25px; line-height:40px; color:#333;">
               <%= @notification.event.kind %>
-              <small style="color:#999; font-size:14px; font-weight:normal;">
-                (<%= @notification.created_at.to_s( :human_verbose ) %>)
-              </small>
             </h3>
-
           <% end %>
+
+          <small style="color:#999; font-size:14px; font-weight:normal;">
+            <%= @notification.created_at.to_s :human_verbose %>
+          </small>
           
           <p style="margin:0 0 10px 0; color:#999; font-size:14px;">
             <%= @notification.event.user.name %>
