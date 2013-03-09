@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/hellojustin/diff_to_html.rb.git
-  revision: c3210998fd90aaba5e66e8c25d5208fa715e3a17
+  revision: f3a5696ef5c7aeba4568fba2665afc42253ce679
   specs:
     diff_to_html (1.0.3)
 
