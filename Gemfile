@@ -22,6 +22,5 @@ group :test, :development do
   gem 'rspec-rails',   '~> 2.0'
 end
 
-source 'http://gems.github.com'
-
-gem 'artemv-diff_to_html', '~> 1.0.3'
+gem 'diff_to_html', :git => 'git://github.com/hellojustin/diff_to_html.rb.git'
+#gem 'diff_to_html', :path => '../diff_to_html.rb'

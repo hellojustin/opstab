@@ -1,6 +1,11 @@
+GIT
+  remote: git://github.com/hellojustin/diff_to_html.rb.git
+  revision: 7a1eaec1cfa2c32f6fbcb3a94604f7865e916667
+  specs:
+    diff_to_html (1.0.3)
+
 GEM
   remote: https://rubygems.org/
-  remote: http://gems.github.com/
   specs:
     aasm (3.0.16)
     actionmailer (3.2.11)
@@ -31,7 +36,6 @@ GEM
       i18n (~> 0.6)
       multi_json (~> 1.0)
     arel (3.0.2)
-    artemv-diff_to_html (1.0.3)
     aws-sdk (1.8.0)
       httparty (~> 0.7)
       json (~> 1.4)
@@ -155,13 +159,13 @@ PLATFORMS
 
 DEPENDENCIES
   aasm (~> 3.0.16)
-  artemv-diff_to_html (~> 1.0.3)
   aws-sdk (~> 1.8.0)
   bootstrap-sass (~> 2.2.2.0)
   coffee-rails (~> 3.2.1)
   compass-colors (~> 0.9.0)
   compass-rails (~> 1.0.3)
   devise (~> 2.2.1)
+  diff_to_html!
   jquery-rails
   pg
   rails (~> 3.2.11)
