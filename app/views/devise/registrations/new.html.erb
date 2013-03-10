@@ -1,21 +1,55 @@
-<h2>Sign up</h2>
+<h2>Welcome to OpsTab</h2>
 
-<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
+<%= form_for resource, 
+             :as => resource_name, 
+             :url => registration_path(resource_name),
+             :html => { :class => 'form-horizontal' } do |f| %>
+
   <%= devise_error_messages! %>
+  
+  <%= field_set_tag 'Create your account, and we\'ll have you on your way in a moment.' do %>
 
-  <%= f.label :email %>
-  <%= f.email_field :email, :autofocus => true %>
+    <div class='control-group'>
+      <%= f.label :email, :class => 'control-label' %>
+      <div class='controls'>
+        <%= f.email_field :email, :autofocus => true %>
+        <span class='muted help-block'>You'll use this email to log-in in the future.</span>
+      </div>
+    </div>
 
-  <%= f.label :name %>
-  <%= f.text_field :name %>
+    
+    <div class='control-group'>
+      <%= f.label :name, :class => 'control-label' %>
+      <div class='controls'>
+        <%= f.text_field :name %>
+        <span class='muted help-block'>Enter your real name to make it easy for OpsTab users to find you.</span>
+      </div>
+    </div>
 
-  <%= f.label :password %>
-  <%= f.password_field :password %>
+    <div class='control-group'>
+      <%= f.label :password, :class => 'control-label' %>
+      <div class='controls'>
+        <%= f.password_field :password, :autocomplete => "off" %>
+      </div>
+    </div>
 
-  <%= f.label :password_confirmation %>
-  <%= f.password_field :password_confirmation %>
+    <div class='control-group'>
+      <%= f.label :password_confirmation, :class => 'control-label' %>
+      <div class='controls'>
+        <%= f.password_field :password_confirmation, :autocomplete => "off" %>
+      </div>
+    </div>
 
-  <div><%= f.submit "Sign up" %></div>
+  <% end %>
+
+  <div class='control-group'>
+    <div class='controls'>
+      <%= f.submit "Sign up", :class => 'btn btn-primary btn-large' %>
+      <%= link_to "Sign in", 
+                  new_session_path(resource_name),
+                  :class => 'btn btn-link' %>
+    </div>
+  </div>
+
 <% end %>
 
-<%= render "devise/shared/links" %>

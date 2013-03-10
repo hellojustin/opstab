@@ -48,5 +48,21 @@ module CommitNotifier
 
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0' 
+
+    # Define non-standard layouts for devise
+    config.to_prepare do
+      
+      Devise::RegistrationsController.layout proc { |controller| 
+        case action_name 
+        when 'edit'
+          'users'
+        when 'update'
+          'users'
+        else
+          'application' 
+        end
+      }
+
+    end
   end
 end

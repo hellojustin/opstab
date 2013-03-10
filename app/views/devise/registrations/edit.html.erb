@@ -1,35 +1,100 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
+<%= form_for resource, 
+             :as   => resource_name, 
+             :url  => registration_path(resource_name), 
+             :html => { :method => :put, :class => 'form-horizontal' } do |f| %>
 
-<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f| %>
   <%= devise_error_messages! %>
+  
+  <%= field_set_tag 'Identity' do %>
 
-  <div><%= f.label :email %><br />
-  <%= f.email_field :email, :autofocus => true %></div>
+    <div class='control-group'>
+      
+      <label class='control-label'>Photo</label>
+      <div class='controls'>
+        <%= link_to 'http://gravatar.com/emails/' do %>
+          <%= image_tag gravatar_url( resource, 128 ), 
+                        :class => 'img-rounded',
+                        'data-src' => 'holder.js/128x128' %>
+          <span class='muted help-block'>Click to manage your photo on Gravatar.com.</span>
+        <% end %>
+      </div>
 
-  <div><%= f.label :name %><br />
-  <%= f.text_field :name %></div>
+    </div>
 
-  <div><%= f.label :description %><br />
-  <%= f.text_area :description %></div>
+    <div class='control-group'>
+      <%= f.label :email, :class => 'control-label' %>
+      <div class='controls'>
+        <%= f.email_field :email, :autofocus => true %>
+        <span class='muted help-block'>You'll use this email to log-in in the future.</span>
+      </div>
+    </div>
+
+    <div class='control-group'>
+      <%= f.label :name, :class => 'control-label' %>
+      <div class='controls'>
+        <%= f.text_field :name %>
+        <span class='muted help-block'>Enter your real name to make it easy for OpsTab users to find you.</span>
+      </div>
+    </div>
+
+    <div class='control-group'>
+      <%= f.label :description, :class => 'control-label' %>
+      <div class='controls'>
+        <%= f.text_area :description, :rows => 5, :class => 'input-xxlarge' %>
+        <span class='muted help-block'>Introduce yourself. What do you normally work on?</span>
+      </div>
+    </div>
+
+  <% end %>
 
   <%# if resource.class.reconfirmable && resource.unconfirmed_email.present? %>
     <!-- div>Currently waiting confirmation for: <%#= resource.unconfirmed_email %></div -->
   <%# end %>
 
-  <div><%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
-  <%= f.password_field :password, :autocomplete => "off" %></div>
+  <%= field_set_tag 'Security' do %>
 
-  <div><%= f.label :password_confirmation %><br />
-  <%= f.password_field :password_confirmation %></div>
+    <div class='control-group'>
+      <label class='control-label'>API Key</label>
+      <div class='controls'>
+        <%= f.text_field :api_key, :readonly => true, :class => 'input-xxlarge' %>
+      </div>
+    </div>
 
-  <div><%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-  <%= f.password_field :current_password %></div>
+    <div class='control-group'>
+      <%= f.label :password, :class => 'control-label' %> 
+      <div class='controls'>
+        <%= f.password_field :password, :autocomplete => "off" %>
+        <span class='muted help-block'>Leave blank if you don't want to change it.</span>
+      </div>
+    </div>
 
-  <div><%= f.submit "Update" %></div>
+    <div class='control-group'>
+      <%= f.label :password_confirmation, :class => 'control-label' %>
+      <div class='controls'>
+        <%= f.password_field :password_confirmation, :autocomplete => "off" %>
+      </div>
+    </div>
+
+    <div class='control-group'>
+      <%= f.label :current_password, :class => 'control-label' %>
+      <div class='controls'>
+        <%= f.password_field :current_password, :autocomplete => "off" %>
+        <span class='muted help-block'>We need your current password to confirm your changes.</i>
+      </div>
+    </div>
+
+  <% end %>
+
+  <div class='control-group'>
+      <div class='controls'>
+        <%= f.submit "Update Account", :class => 'btn btn-primary' %>
+      </div>
+  </div>
 <% end %>
 
+<%#
 <h3>Cancel my account</h3>
 
-<p>Unhappy? <%= link_to "Cancel my account", registration_path(resource_name), :data => { :confirm => "Are you sure?" }, :method => :delete %>.</p>
+<p>Unhappy? <%= link_to "Cancel my account", registration_path(resource_name), :data => { :confirm => "Are you sure?" }, :method => :delete % >.</p>
 
-<%= link_to "Back", :back %>
+%>
