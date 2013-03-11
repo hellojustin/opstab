@@ -13,14 +13,16 @@
       <tr>
         
         <td style="padding:5px; vertical-align:top;">
-          <%= link_to notification_url( @notification ) do %>
+          <%= link_to user_event_url( @notification.event.user, 
+                                      @notification.event ) do %>
             <%= image_tag gravatar_url( @notification.event.user, 128 ), 
                           :style => 'border-radius:6px;' %>
           <% end %>
         </td>
         
         <td style="padding:5px; vertical-align:top;">
-          <%= link_to notification_url( @notification ), 
+          <%= link_to user_event_url( @notification.event.user,
+                                      @notification.event ), 
                       :style => 'text-decoration:none;' do %>
             <h3 style="margin:0; font-size:25px; line-height:40px; color:#333;">
               <%= @notification.event.kind %>
@@ -42,7 +44,8 @@
         
         <td style="padding:5px; vertical-align:top;">
           <%= link_to 'View in Browser', 
-                      notification_url( @notification ), 
+                      user_event_url( @notification.event.user,
+                                      @notification.event ), 
                       :style => "display:block; 
                                 padding:4px 20px; 
                                 vertical-align:middle; 
