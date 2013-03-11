@@ -19,12 +19,13 @@ class Event < ActiveRecord::Base
       :summary    => self.summary.to_s
     }
     index_params.merge! self.data
-    index_params.merge!( { :text => index_params.values.to_yaml } )
-    Searchify.index.document( "event|#{self.id}" ).add( index_params )
+    index_params.merge!( { :text  => index_params.values.to_yaml } )
+    index_params.merge!( { :class => self.class.to_s } )
+    Searchify.index.document( "#{self.class.to_s}|#{self.id}" ).add( index_params )
   end
 
   def remove_from_searchify_index
-    Searchify.index.document( "event|#{self.id}" ).delete
+    Searchify.index.document( "#{self.class.to_s}|#{self.id}" ).delete
   end
 
   private

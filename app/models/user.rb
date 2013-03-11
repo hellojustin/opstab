@@ -42,6 +42,8 @@ class User < ActiveRecord::Base
 
   after_save :update_searchify_index
 
+  before_destroy :remove_from_searchify_index
+
 
   def self.search( terms )
     where 'email LIKE ?', "%#{terms}%" 
@@ -84,8 +86,13 @@ class User < ActiveRecord::Base
       :email       => self.email.to_s,
       :description => self.description.to_s
     }
-    index_params.merge!( { :text => index_params.values.to_yaml } )
-    Searchify.index.document( "user|#{self.id}" ).add( index_params )
+    index_params.merge!( { :text  => index_params.values.to_yaml } )
+    index_params.merge!( { :class => self.class.to_s } )
+    Searchify.index.document( "#{self.class.to_s}|#{self.id}" ).add( index_params )
+  end
+
+  def remove_from_searchify_index
+    Searchify.index.document( "#{self.class.to_s}|#{self.id}" ).delete
   end
 
 end

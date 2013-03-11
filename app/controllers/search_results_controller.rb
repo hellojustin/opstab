@@ -4,23 +4,26 @@ class SearchResultsController < ApplicationController
 
   def index
     @search_terms = params[:search_terms]
-    results = Searchify.index.search( @search_terms )
-    logger.debug results.inspect
-    ids     = { 'user' => [], 'event' => [] }
+    
+    user_results  = Searchify.index.search( "#{@search_terms} class:User" )
+    event_results = Searchify.index.search( "#{@search_terms} class:Event" )
 
-    results['results'].each do |doc|
-      id_match = doc['docid'].match /(\w+)\|(\d+)/
-      type     = id_match[1]
-      id       = id_match[2]
-      ids[ type ] << id
-    end
+    user_ids      = user_results['results'].map  { |doc| get_model_id doc }
+    event_ids     = event_results['results'].map { |doc| get_model_id doc }
 
-    @users = User.where  :id => ids['user']
+    @users        = User.where  :id => user_ids
     @users.sort!  { |a,b| a.name <=> b.name }
 
-    @events = Event.where :id => ids['event']
+    @events       = Event.where :id => event_ids
     @events.select! { |event| current_user.follows? event.user }
     @events.sort! { |a,b| b.created_at <=> a.created_at }
+  end
+
+  private
+  
+  def get_model_id( doc )
+    id_match = doc['docid'].match /(\w+)\|(\d+)/
+    id_match[2].to_i
   end
 
 end
