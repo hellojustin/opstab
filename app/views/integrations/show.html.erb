@@ -7,3 +7,20 @@
   <%= integration.instructions %>
 
 </div>
+
+<div>
+  
+  <p>
+    To install, do the following from the root directory of your git project:
+    <ol>
+      <li><span class='code'>cd .git/hooks</span></li>
+      <li><span class='code'>wget <%= integrations_downloads_gcs_pc_path( current_user.api_key )%></span></li>
+      <li><span class='code'>chmod +x post-commit</span></li> 
+    </ol>
+  </p>
+  
+  <p>
+    Or you can manually download the post-commit hook <%= link_to 'here.', integrations_downloads_gcs_pc_path( current_user.api_key ) %>
+  </p>
+
+</div>
