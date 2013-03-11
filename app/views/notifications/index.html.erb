@@ -17,12 +17,11 @@
       <% end %>
 
       <div class='media-body'>
-        <%= link_to 'View Full Notification', 
-                    notification_path( notification ), 
-                    :class => 'btn pull-right' %>
-        <h3>
-          <%= notification.event.kind %> event
-        </h3>
+        <%= link_to user_event_path( notification.event.user, notification.event ) do %>
+          <h3>
+            <%= notification.event.kind %> event
+          </h3>
+        <% end %>
 
         <small>
           <%= notification.created_at.to_s :human_brief %>

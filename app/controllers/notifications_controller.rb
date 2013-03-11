@@ -8,15 +8,6 @@ class NotificationsController < ApplicationController
     @notifications = @user.notifications.sort { |a,b| b.created_at <=> a.created_at }
   end
 
-  def show
-    @notification = Notification.find( params[:id] )
-    @user         = current_user
-    
-    if @notification.user != current_user 
-      render :status => 404
-    end
-  end
-
   private
 
   def determine_layout

@@ -1,0 +1,87 @@
+<header class='page-header'>
+  <h2>Search results for '<%= @search_terms %>'</h2>
+</header>
+
+<section id='userSearchResults'>
+
+<ul class='unstyled'>
+
+  <% @users.each do |user| %>
+
+    <li class='row'>
+      
+      <div class='span4'>
+        <%= render :partial => 'users/user_card',
+                   :locals  => { :user          => user,
+                                 :featured_user => false } %>
+      </div>
+
+      <div class='span7'>
+        <p class='muted'>
+          <%= user.description %>
+        </p>
+      </div>
+
+      <div class='span1'>
+
+        <% if current_user.follows? user %>
+
+          <span class='label label-success'>following</span>
+
+        <% else %>
+
+          <%= link_to 'Follow', 
+              create_following_path( :followed_user_id => user.id ), 
+              :method => :post,
+              :class  => 'btn' %>
+
+        <% end %>
+
+      </div>
+    </li>
+
+  <% end %>
+
+</ul>
+
+</section>
+
+<section id='eventSearchResults'>
+  
+  <% @events.each do |event| %>
+
+    <div class='row'>
+
+      <div class='span12 media event-card'>
+
+        <%= link_to user_event_path( event.user, event ), :class => 'pull-left' do %>
+          <%= image_tag gravatar_url( event.user, 64 ), 
+                        :class => 'media-object img-rounded',
+                        'data-src' => 'holder.js/64x64' %>
+        <% end %>
+
+
+        <div class='media-body'>
+          <%= link_to user_event_path( event.user, event ) do %>
+            <h3>
+              <%= event.kind %> event
+            </h3>
+          <% end %>
+          
+          <small>
+            <%= event.created_at.to_s :human_brief %>
+          </small>
+
+          <p class='muted'><%= event.user.name %></p>
+
+          <p><%= event.summary %></p>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  <% end %>
+
+</section>

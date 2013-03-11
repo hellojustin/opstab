@@ -5,14 +5,10 @@ CommitNotifier::Application.routes.draw do
   root :to => "home#index"
 
   resources :users, :only => [ :index, :show ] do
-    resources :events, :only => [ :new, :create, :index ]
+    resources :events, :only => [ :new, :show, :create, :index ]
     match 'followers', :to => 'followings#followers', :as => 'followers'
     match 'following', :to => 'followings#following', :as => 'following'
   end
-
-  match 'users/:search_terms', 
-        :to => 'users#index', 
-        :as => 'search_users'
 
   resources :followings, :only => [ :index, :edit, :update ]
 
@@ -21,7 +17,9 @@ CommitNotifier::Application.routes.draw do
         :to  => 'followings#create', 
         :as  => 'create_following'
 
-  resources :notifications, :only => [ :index, :show ]
+  resources :notifications, :only => [ :index ]
+
+  resources :search_results, :only => [ :index ]
 
   resources :integrations, :only => [ :index, :show ]
 

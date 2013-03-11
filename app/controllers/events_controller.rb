@@ -11,6 +11,12 @@ class EventsController < ApplicationController
 
   end
 
+  def show
+    
+    @event = Event.find params[ :id ]
+
+  end
+
   def new    
 
     render :locals => { :event => Event.new, :user => current_user }

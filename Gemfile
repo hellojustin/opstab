@@ -6,6 +6,7 @@ gem 'aasm',            '~> 3.0.16'
 gem 'bootstrap-sass',  '~> 2.2.2.0'
 gem 'devise',          '~> 2.2.1'
 gem 'pg'
+gem 'indextank'
 
 gem 'jquery-rails'
 

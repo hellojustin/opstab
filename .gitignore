@@ -1,4 +1,6 @@
 /.bundle
+/.env
+/.powenv
 /db/*.sqlite3
 /log/*.log
 /tmp

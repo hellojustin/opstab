@@ -40,6 +40,8 @@ class User < ActiveRecord::Base
 
   validates_presence_of :name
 
+  after_save :update_searchify_index
+
 
   def self.search( terms )
     where 'email LIKE ?', "%#{terms}%" 
@@ -74,6 +76,16 @@ class User < ActiveRecord::Base
 
   def notification_rules
     [ NotificationRule.new( :user_id => self.id ) ]
+  end
+
+  def update_searchify_index
+    index_params = {
+      :name        => self.name.to_s,
+      :email       => self.email.to_s,
+      :description => self.description.to_s
+    }
+    index_params.merge!( { :text => index_params.values.to_yaml } )
+    Searchify.index.document( "user|#{self.id}" ).add( index_params )
   end
 
 end

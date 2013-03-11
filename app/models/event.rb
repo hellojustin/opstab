@@ -7,6 +7,25 @@ class Event < ActiveRecord::Base
   serialize  :data, Hash
 
   after_save :distribute
+  after_save :update_searchify_index
+
+  before_destroy :remove_from_searchify_index
+
+  def update_searchify_index
+    index_params = {
+      :user_name  => self.user.name.to_s,
+      :user_email => self.user.email.to_s,
+      :kind       => self.kind.to_s,
+      :summary    => self.summary.to_s
+    }
+    index_params.merge! self.data
+    index_params.merge!( { :text => index_params.values.to_yaml } )
+    Searchify.index.document( "event|#{self.id}" ).add( index_params )
+  end
+
+  def remove_from_searchify_index
+    Searchify.index.document( "event|#{self.id}" ).delete
+  end
 
   private
   
