@@ -19,6 +19,8 @@ class UsersController < ApplicationController
     case action_name
     when 'index'
       'user_sidebar_layout'
+    when 'edit'
+      'user_sidebar_layout'
     else
       'users'
     end

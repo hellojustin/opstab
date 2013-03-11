@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
 
   include UsersHelper
-  include DeviseHelper
+  include DeviseRedirectsHelper
 
   protect_from_forgery
 

@@ -1,4 +1,4 @@
-module DeviseHelper
+module DeviseRedirectsHelper
 
   def after_sign_in_path_for( resource )
     notifications_path
