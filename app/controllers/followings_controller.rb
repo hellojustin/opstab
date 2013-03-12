@@ -26,7 +26,7 @@ class FollowingsController < ApplicationController
     if following.include? current_user
       render :locals => { :following => following }
     else
-      redirect_to followings_path
+      redirect_to user_followers_path( current_user )
     end
 
   end
@@ -37,13 +37,16 @@ class FollowingsController < ApplicationController
 
     if    params[ :approve ] and following.approver? current_user
       following.approve!
+      flash[:notice] = "#{following.following_user.name} is now following you."
     elsif params[ :ignore ]  and following.approver? current_user
       following.ignore!
+      flash[:notice] = "You've ignored #{following.following_user.name}'s follow request."
     elsif params[ :cancel ]  and following.requester? current_user
       following.cancel!
+      flash[:notice] = "Your follow request to #{following.followed_user.name} is now canceled."
     end
 
-    redirect_to followings_path
+    redirect_to user_followers_path( current_user )
 
   end
 
