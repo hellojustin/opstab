@@ -12,11 +12,11 @@
   <% end %>
 <% end %>
 
-<% user.followers.each do |follower| %>
+<% user.followed_users.each do |followed_user| %>
   <li class='row-fluid'>
 
     <%= render :partial => 'followings/following_row', 
-               :locals  => { :user     => follower,
+               :locals  => { :user     => followed_user,
                              :full_row => full_row } %>
   
   </li>
