@@ -45,11 +45,6 @@ class User < ActiveRecord::Base
 
   before_destroy :remove_from_searchify_index
 
-
-  def self.search( terms )
-    where 'email LIKE ?', "%#{terms}%" 
-  end
-
   def initialize( params = {} )
     super( params )
     self.api_key = SecureRandom.uuid

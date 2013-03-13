@@ -5,10 +5,6 @@ class Notification < ActiveRecord::Base
 
   after_save :deliver
 
-  def summary
-    "#{ event.user.email } performed a #{ event.kind }"
-  end
-
   private
   
   def deliver

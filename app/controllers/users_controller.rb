@@ -4,8 +4,8 @@ class UsersController < ApplicationController
   layout        :determine_layout
 
   def index
-    users = User.search params[ :search_terms ]
-    render :locals => { :users => users, :search_terms => params[:search_terms] }
+    users = User.all
+    render :locals => { :users => users }
   end
 
   def show
