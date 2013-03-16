@@ -7,7 +7,7 @@ class FollowingsMailer < ActionMailer::Base
     @followed_user  = following.followed_user
 
     mail( :to      => following.followed_user.email,
-          :from    => 'notify@hellojustin.net',
+          :from    => 'notifications@opstab.com',
           :subject => "#{following.following_user.name} would like to follow you on OpsTab." )
 
   end

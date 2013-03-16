@@ -16,7 +16,7 @@ CommitNotifier::Application.configure do
   config.action_mailer.delivery_method       = :sendmail
   config.action_mailer.smtp_settings         = {
     :address              => 'smtp.gmail.com',
-    :domain               => 'hellojustin.net',
+    :domain               => 'opstab.com',
     :port                 => 587,
     :user_name            => ENV['SMTP_USERNAME'],
     :password             => ENV['SMTP_PASSWORD'],
@@ -25,7 +25,7 @@ CommitNotifier::Application.configure do
   }
   config.action_mailer.perform_deliveries    = true
   config.action_mailer.raise_delivery_errors = true
-  config.action_mailer.default_url_options = { :host => 'commit_notifier.dev' }
+  config.action_mailer.default_url_options = { :host => 'opstab.net' }
 
   # Print deprecation notices to the Rails logger
   config.active_support.deprecation = :log
